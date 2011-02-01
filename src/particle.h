@@ -12,18 +12,18 @@
 extern "C" {
 #endif
 
-typedef struct particle {
-    /* Coordinate of the particle */
-    double x;
-    double y;
-    double z;
-    /* Velocity of the particle */
-    double vx;
-    double vy;
-    double vz;
-    /* Mass of the particle */
-    double m;
-} particle;
+    typedef struct particle {
+        /* Coordinate of the particle */
+        double x;
+        double y;
+        double z;
+        /* Velocity of the particle */
+        double vx;
+        double vy;
+        double vz;
+        /* Mass of the particle */
+        double m;
+    } particle;
 
 #ifdef	__cplusplus
 }

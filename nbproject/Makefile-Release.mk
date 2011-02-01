@@ -33,7 +33,9 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/src/main.o
+	${OBJECTDIR}/src/main.o \
+	${OBJECTDIR}/src/options.o \
+	${OBJECTDIR}/src/particle.o
 
 
 # C Compiler Flags
@@ -54,16 +56,26 @@ LDLIBSOPTIONS=
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
-	"${MAKE}"  -f nbproject/Makefile-Release.mk dist/Release/MinGW-Windows/nbody.exe
+	"${MAKE}"  -f nbproject/Makefile-Release.mk dist/Release/MinGW-Windows/nbodyc.exe
 
-dist/Release/MinGW-Windows/nbody.exe: ${OBJECTFILES}
+dist/Release/MinGW-Windows/nbodyc.exe: ${OBJECTFILES}
 	${MKDIR} -p dist/Release/MinGW-Windows
-	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/nbody ${OBJECTFILES} ${LDLIBSOPTIONS} 
+	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/nbodyc ${OBJECTFILES} ${LDLIBSOPTIONS} 
 
 ${OBJECTDIR}/src/main.o: src/main.c 
 	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} $@.d
 	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/main.o src/main.c
+
+${OBJECTDIR}/src/options.o: src/options.c 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/options.o src/options.c
+
+${OBJECTDIR}/src/particle.o: src/particle.c 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.c) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/particle.o src/particle.c
 
 # Subprojects
 .build-subprojects:
@@ -71,7 +83,7 @@ ${OBJECTDIR}/src/main.o: src/main.c
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r build/Release
-	${RM} dist/Release/MinGW-Windows/nbody.exe
+	${RM} dist/Release/MinGW-Windows/nbodyc.exe
 
 # Subprojects
 .clean-subprojects:

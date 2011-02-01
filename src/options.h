@@ -8,12 +8,14 @@
 #ifndef OPTIONS_H
 #define	OPTIONS_H
 
+#include "params.h"
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
 
-
+    void parseOptions(int argc, char ** argv, params * p);
 
 #ifdef	__cplusplus
 }

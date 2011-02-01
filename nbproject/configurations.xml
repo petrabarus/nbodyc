@@ -5,6 +5,9 @@
                    displayName="Header Files"
                    projectFiles="true"
                    kind="SOURCE_LOGICAL_FOLDER">
+      <itemPath>src/options.h</itemPath>
+      <itemPath>src/params.h</itemPath>
+      <itemPath>src/particle.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -15,7 +18,29 @@
                    displayName="Source Files"
                    projectFiles="true"
                    kind="SOURCE_LOGICAL_FOLDER">
+      <logicalFolder name="f4"
+                     displayName="nbody"
+                     projectFiles="true"
+                     kind="SOURCE_LOGICAL_FOLDER">
+        <logicalFolder name="f2"
+                       displayName="barneshut"
+                       projectFiles="true"
+                       kind="SOURCE_LOGICAL_FOLDER">
+        </logicalFolder>
+        <logicalFolder name="f1"
+                       displayName="direct"
+                       projectFiles="true"
+                       kind="SOURCE_LOGICAL_FOLDER">
+        </logicalFolder>
+        <logicalFolder name="f3"
+                       displayName="fmm"
+                       projectFiles="true"
+                       kind="SOURCE_LOGICAL_FOLDER">
+        </logicalFolder>
+      </logicalFolder>
       <itemPath>src/main.c</itemPath>
+      <itemPath>src/options.c</itemPath>
+      <itemPath>src/particle.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
