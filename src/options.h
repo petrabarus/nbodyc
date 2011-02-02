@@ -14,7 +14,12 @@
 extern "C" {
 #endif
 
-
+    /**
+     * Parsing the application argument
+     * @param argc Argument count
+     * @param argv Argument values
+     * @param p Application param
+     */
     void parseOptions(int argc, char ** argv, params * p);
 
 #ifdef	__cplusplus

@@ -8,7 +8,7 @@
         <configurationname>GizmoSimple</configurationname>
       </gizmo_options>
       <runprofile version="6">
-        <args>--timediff 0.0002 --epsilon 0.00001 --input data/data1.in --output data/out</args>
+        <args>-n 1000 --timediff 0.0002 --epsilon 0.00001 --input data/data1.in --output data/out1/out</args>
         <rundir>C:\Tesis\nbodyc\.</rundir>
         <buildfirst>true</buildfirst>
         <console-type>0</console-type>

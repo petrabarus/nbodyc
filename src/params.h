@@ -22,6 +22,8 @@ extern "C" {
         double timeDiff;
         /* Epsilon */
         double eps;
+        /* Iteration count */
+        int n;
         /**/
         char * inputPath;
         char * outputPath;

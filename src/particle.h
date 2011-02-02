@@ -8,6 +8,8 @@
 #ifndef PARTICLE_H
 #define	PARTICLE_H
 
+#include <stdio.h>
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
@@ -24,6 +26,8 @@ extern "C" {
         /* Mass of the particle */
         double m;
     } particle;
+
+    void printParticle(FILE * fp, particle particle);
 
 #ifdef	__cplusplus
 }
