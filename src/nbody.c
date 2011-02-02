@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   main.c
  * Author: petra
  *

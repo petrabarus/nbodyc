@@ -32,7 +32,15 @@ include Makefile
 OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
-OBJECTFILES=
+OBJECTFILES= \
+	${OBJECTDIR}/src/nbody/direct/direct.o \
+	${OBJECTDIR}/src/options.o \
+	${OBJECTDIR}/src/nbody.o \
+	${OBJECTDIR}/src/nbody/barneshut/barneshut.o \
+	${OBJECTDIR}/src/io/vtk/vtk.o \
+	${OBJECTDIR}/src/nbody/fmm/fmm.o \
+	${OBJECTDIR}/src/particle.o \
+	${OBJECTDIR}/src/nbody/barneshut/octree.o
 
 
 # C Compiler Flags
@@ -58,6 +66,46 @@ LDLIBSOPTIONS=
 dist/Debug/MinGW-Windows/nbodyc.exe: ${OBJECTFILES}
 	${MKDIR} -p dist/Debug/MinGW-Windows
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/nbodyc ${OBJECTFILES} ${LDLIBSOPTIONS} 
+
+${OBJECTDIR}/src/nbody/direct/direct.o: src/nbody/direct/direct.c 
+	${MKDIR} -p ${OBJECTDIR}/src/nbody/direct
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/nbody/direct/direct.o src/nbody/direct/direct.c
+
+${OBJECTDIR}/src/options.o: src/options.c 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/options.o src/options.c
+
+${OBJECTDIR}/src/nbody.o: src/nbody.c 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/nbody.o src/nbody.c
+
+${OBJECTDIR}/src/nbody/barneshut/barneshut.o: src/nbody/barneshut/barneshut.c 
+	${MKDIR} -p ${OBJECTDIR}/src/nbody/barneshut
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/nbody/barneshut/barneshut.o src/nbody/barneshut/barneshut.c
+
+${OBJECTDIR}/src/io/vtk/vtk.o: src/io/vtk/vtk.c 
+	${MKDIR} -p ${OBJECTDIR}/src/io/vtk
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/io/vtk/vtk.o src/io/vtk/vtk.c
+
+${OBJECTDIR}/src/nbody/fmm/fmm.o: src/nbody/fmm/fmm.c 
+	${MKDIR} -p ${OBJECTDIR}/src/nbody/fmm
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/nbody/fmm/fmm.o src/nbody/fmm/fmm.c
+
+${OBJECTDIR}/src/particle.o: src/particle.c 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/particle.o src/particle.c
+
+${OBJECTDIR}/src/nbody/barneshut/octree.o: src/nbody/barneshut/octree.c 
+	${MKDIR} -p ${OBJECTDIR}/src/nbody/barneshut
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/nbody/barneshut/octree.o src/nbody/barneshut/octree.c
 
 # Subprojects
 .build-subprojects:

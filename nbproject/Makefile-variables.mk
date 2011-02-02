@@ -22,3 +22,11 @@ CND_ARTIFACT_PATH_Release=dist/Release/MinGW-Windows/nbodyc
 CND_PACKAGE_DIR_Release=dist/Release/MinGW-Windows/package
 CND_PACKAGE_NAME_Release=nbodyc.tar
 CND_PACKAGE_PATH_Release=dist/Release/MinGW-Windows/package/nbodyc.tar
+# Randomize configuration
+CND_PLATFORM_Randomize=MinGW-Windows
+CND_ARTIFACT_DIR_Randomize=dist/Randomize/MinGW-Windows
+CND_ARTIFACT_NAME_Randomize=randomize
+CND_ARTIFACT_PATH_Randomize=dist/Randomize/MinGW-Windows/randomize
+CND_PACKAGE_DIR_Randomize=dist/Randomize/MinGW-Windows/package
+CND_PACKAGE_NAME_Randomize=nbodyc.tar
+CND_PACKAGE_PATH_Randomize=dist/Randomize/MinGW-Windows/package/nbodyc.tar

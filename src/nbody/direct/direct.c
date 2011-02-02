@@ -41,8 +41,11 @@ void nbodyDirect(
 	double znew[count];
 	int i;
 	int j;
-	int state;
-	for (state = 0; state < n; state++) {
+	int state = 0;
+	char filename[255];
+	sprintf(filename, fileParamBuff, state);
+	nbodyDirectPrintParticles(filename, particles, count);
+	for (state = 1; state <= n; state++) {
 		for (i = 0; i < count; i++) {
 			ax = 0.0;
 			ay = 0.0;
@@ -74,8 +77,8 @@ void nbodyDirect(
 			particles[i].z = znew[i];
 		}
 		/* print the state */
-		char filename[255];
-		sprintf(filename, fileParamBuff, (state + 1));
+		
+		sprintf(filename, fileParamBuff, state);
 		nbodyDirectPrintParticles(filename, particles, count);
 	}
 }
@@ -85,6 +88,6 @@ void nbodyDirectPrintParticles(
 		particle * particles,
 		int count)
 {
-	
+
 	vtkWriteStructuredGrid(outputPath, particles, count);
 }

@@ -8,7 +8,7 @@
         <configurationname>GizmoSimple</configurationname>
       </gizmo_options>
       <runprofile version="6">
-        <args>-n 1000 --timediff 0.0002 --epsilon 0.00001 --input data/data1.in --output data/out1/out</args>
+        <args>-n 50 --timediff 0.1 --epsilon 0.00001 --input data/data5.in --output data/out5/out</args>
         <rundir>C:\Tesis\nbodyc\.</rundir>
         <buildfirst>true</buildfirst>
         <console-type>0</console-type>
@@ -24,6 +24,21 @@
       </gizmo_options>
       <runprofile version="6">
         <args></args>
+        <rundir></rundir>
+        <buildfirst>true</buildfirst>
+        <console-type>0</console-type>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+    <conf name="Randomize" type="1">
+      <gizmo_options version="3">
+        <configurationname>GizmoSimple</configurationname>
+      </gizmo_options>
+      <runprofile version="6">
+        <args>-n 10000 -o data/data5.in</args>
         <rundir></rundir>
         <buildfirst>true</buildfirst>
         <console-type>0</console-type>
