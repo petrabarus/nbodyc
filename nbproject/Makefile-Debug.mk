@@ -39,6 +39,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/nbody/barneshut/barneshut.o \
 	${OBJECTDIR}/src/io/vtk/vtk.o \
 	${OBJECTDIR}/src/nbody/fmm/fmm.o \
+	${OBJECTDIR}/src/utils/util.o \
 	${OBJECTDIR}/src/particle.o \
 	${OBJECTDIR}/src/nbody/barneshut/treecode.o
 
@@ -96,6 +97,11 @@ ${OBJECTDIR}/src/nbody/fmm/fmm.o: src/nbody/fmm/fmm.c
 	${MKDIR} -p ${OBJECTDIR}/src/nbody/fmm
 	${RM} $@.d
 	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/nbody/fmm/fmm.o src/nbody/fmm/fmm.c
+
+${OBJECTDIR}/src/utils/util.o: src/utils/util.c 
+	${MKDIR} -p ${OBJECTDIR}/src/utils
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/utils/util.o src/utils/util.c
 
 ${OBJECTDIR}/src/particle.o: src/particle.c 
 	${MKDIR} -p ${OBJECTDIR}/src

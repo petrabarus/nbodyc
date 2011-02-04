@@ -37,15 +37,18 @@ void nbodyBarnesHut(particle * particles,
 	/* End converting */
 	/* Do the stepping */
 	bodyptr p;
-	for (step = 1; step <= n; step++) {
-		//make the tree
+	for (step = 1; step <= 1; step++) {
+		cellptr root;
+		/* Make the tree */
+		treeInit(&root, bodies, count);
 		//summarize body
 		//compute force
 		//Advance each body
 		for (p = bodies; p < bodies + count; p++){
-			//Advance the speed
-			//Advance the position
+			/* Advance the speed */
+			/* Advance the position */
 		}
+		/* Free the tree */
 	}
 }
 

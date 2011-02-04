@@ -118,7 +118,13 @@ extern "C" {
      * @param root Root of the tree to be initiated
      * @param body The body to be inserted
      */
-    void treeInsert(cellptr * root, bodyptr body);
+    void treeInsert(cellptr * root, real rsize, bodyptr body);
+
+    /**
+     * Create a new fre cell
+     * @return Pointer to free cell
+     */
+    cellptr treeCreateCell();
 #ifdef	__cplusplus
 }
 #endif

@@ -40,6 +40,12 @@
           <itemPath>src/nbody/fmm/fmm.h</itemPath>
         </logicalFolder>
       </logicalFolder>
+      <logicalFolder name="f3"
+                     displayName="utils"
+                     projectFiles="true"
+                     kind="SOURCE_LOGICAL_FOLDER">
+        <itemPath>src/utils/util.h</itemPath>
+      </logicalFolder>
       <itemPath>src/options.h</itemPath>
       <itemPath>src/params.h</itemPath>
       <itemPath>src/particle.h</itemPath>
@@ -87,6 +93,12 @@
                        kind="SOURCE_LOGICAL_FOLDER">
           <itemPath>src/nbody/fmm/fmm.c</itemPath>
         </logicalFolder>
+      </logicalFolder>
+      <logicalFolder name="f2"
+                     displayName="utils"
+                     projectFiles="true"
+                     kind="SOURCE_LOGICAL_FOLDER">
+        <itemPath>src/utils/util.c</itemPath>
       </logicalFolder>
       <itemPath>src/nbody.c</itemPath>
       <itemPath>src/options.c</itemPath>

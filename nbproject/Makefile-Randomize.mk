@@ -35,6 +35,7 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/randomize.o \
 	${OBJECTDIR}/src/io/vtk/vtk.o \
+	${OBJECTDIR}/src/utils/util.o \
 	${OBJECTDIR}/src/nbody/barneshut/treecode.o
 
 
@@ -71,6 +72,11 @@ ${OBJECTDIR}/src/io/vtk/vtk.o: src/io/vtk/vtk.c
 	${MKDIR} -p ${OBJECTDIR}/src/io/vtk
 	${RM} $@.d
 	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/io/vtk/vtk.o src/io/vtk/vtk.c
+
+${OBJECTDIR}/src/utils/util.o: src/utils/util.c 
+	${MKDIR} -p ${OBJECTDIR}/src/utils
+	${RM} $@.d
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/utils/util.o src/utils/util.c
 
 ${OBJECTDIR}/src/nbody/barneshut/treecode.o: src/nbody/barneshut/treecode.c 
 	${MKDIR} -p ${OBJECTDIR}/src/nbody/barneshut
