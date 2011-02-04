@@ -35,7 +35,7 @@ OBJECTDIR=build/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/randomize.o \
 	${OBJECTDIR}/src/io/vtk/vtk.o \
-	${OBJECTDIR}/src/nbody/barneshut/octree.o
+	${OBJECTDIR}/src/nbody/barneshut/treecode.o
 
 
 # C Compiler Flags
@@ -72,10 +72,10 @@ ${OBJECTDIR}/src/io/vtk/vtk.o: src/io/vtk/vtk.c
 	${RM} $@.d
 	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/io/vtk/vtk.o src/io/vtk/vtk.c
 
-${OBJECTDIR}/src/nbody/barneshut/octree.o: src/nbody/barneshut/octree.c 
+${OBJECTDIR}/src/nbody/barneshut/treecode.o: src/nbody/barneshut/treecode.c 
 	${MKDIR} -p ${OBJECTDIR}/src/nbody/barneshut
 	${RM} $@.d
-	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/nbody/barneshut/octree.o src/nbody/barneshut/octree.c
+	$(COMPILE.c) -g -MMD -MP -MF $@.d -o ${OBJECTDIR}/src/nbody/barneshut/treecode.o src/nbody/barneshut/treecode.c
 
 # Subprojects
 .build-subprojects:

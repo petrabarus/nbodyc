@@ -10,6 +10,7 @@
 #include <getopt.h>
 #include <time.h>
 #include <math.h>
+#include "utils/drand48.h"
 
 #define MULT 1103515245
 #define ADD 12345
@@ -56,6 +57,10 @@ void random1();
 
 void random2();
 
+void sphere();
+
+void sphere2();
+
 /*
  * 
  */
@@ -75,7 +80,9 @@ int main(int argc, char** argv)
 	printf("zmax   : %lf\n", zmax);
 	printf("mmax   : %lf\n", mmax);
 
-	random1();
+	//random1();
+	//sphere();
+	sphere2();
 
 	return(EXIT_SUCCESS);
 }
@@ -118,12 +125,65 @@ void random2()
 	if (fp == NULL) exit(EXIT_FAILURE);
 	puts("Generating");
 	int i;
+
 	for (i = 0; i < count; i++) {
 		printf("%d\n", i);
 		x = ((rand() / (double) RAND_MAX) * (xmax - xmin)) + xmin;
 		y = ((rand() / (double) RAND_MAX) * (ymax - ymin)) + ymin;
 		z = ((rand() / (double) RAND_MAX) * (zmax - zmin)) + zmin;
 		m = ((rand() / (double) RAND_MAX) * (mmax - mmin)) + mmin;
+		fprintf(fp, "%lf %lf %lf %lf\n", x, y, z, m);
+	}
+
+	fclose(fp);
+}
+
+void sphere2()
+{
+	srand(time(NULL));
+	int i;
+	double x, y, z, w, t;
+	double m = 1.0 / count;
+	fp = fopen(filename, "w");
+	srand48(time(NULL));
+	if (fp == NULL) exit(EXIT_FAILURE);
+	int coord[4][3] = {
+		{5, 5, 0},
+		{5, -5, 0},
+		{-5, 5, 0},
+		{-5, -5, 0},
+	};
+	int j;
+	for (j = 0; j < 4; j++) {
+		for (i = 0; i < count; i++) {
+			printf("%d\n", i);
+			z = 2.0 * drand48() - 1.0 + coord[j][2];
+			t = 2.0 * M_PI * drand48();
+			w = sqrt(1 - z * z);
+			x = w * cos(t) + coord[j][0];
+			y = w * sin(t) + coord[j][1];
+			fprintf(fp, "%lf %lf %lf %lf\n", x, y, z, m);
+		}
+	}
+	fclose(fp);
+}
+
+void sphere()
+{
+	srand(time(NULL));
+	int i;
+	double x, y, z, w, t;
+	double m = 1.0 / count;
+	fp = fopen(filename, "w");
+	srand48(time(NULL));
+	if (fp == NULL) exit(EXIT_FAILURE);
+	for (i = 0; i < count; i++) {
+		printf("%d\n", i);
+		z = 2.0 * drand48() - 1.0;
+		t = 2.0 * M_PI * drand48();
+		w = sqrt(1 - z * z);
+		x = w * cos(t);
+		y = w * sin(t);
 		fprintf(fp, "%lf %lf %lf %lf\n", x, y, z, m);
 	}
 	fclose(fp);
