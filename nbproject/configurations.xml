@@ -25,6 +25,7 @@
                        projectFiles="true"
                        kind="SOURCE_LOGICAL_FOLDER">
           <itemPath>src/nbody/barneshut/barneshut.h</itemPath>
+          <itemPath>src/nbody/barneshut/treecode.h</itemPath>
         </logicalFolder>
         <logicalFolder name="f1"
                        displayName="direct"
@@ -72,6 +73,7 @@
                        projectFiles="true"
                        kind="SOURCE_LOGICAL_FOLDER">
           <itemPath>src/nbody/barneshut/barneshut.c</itemPath>
+          <itemPath>src/nbody/barneshut/treecode.c</itemPath>
         </logicalFolder>
         <logicalFolder name="f1"
                        displayName="direct"

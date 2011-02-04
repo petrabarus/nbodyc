@@ -12,6 +12,7 @@
 #include "options.h"
 #include "particle.h"
 #include "nbody/direct/direct.h"
+#include "nbody/barneshut/barneshut.h"
 
 params appParams;
 
@@ -32,7 +33,9 @@ int main(int argc, char** argv)
 	particle * particles;
 	int count;
 	readInputFile(appParams.inputPath, &particles, &count);
-	nbodyDirect(particles, count, appParams.n,
+	//nbodyDirect(particles, count, appParams.n,
+	//		appParams.timeDiff, appParams.eps, appParams.outputPath);
+	nbodyBarnesHut(particles, count, appParams.n,
 			appParams.timeDiff, appParams.eps, appParams.outputPath);
 	return(EXIT_SUCCESS);
 }

@@ -3,6 +3,7 @@
  * Author: petra
  *
  * Created on 01 Februari 2011, 14:24
+ * Driver for direct force-calculation algorithm
  */
 
 #include <stdio.h>
@@ -41,11 +42,12 @@ void nbodyDirect(
 	double znew[count];
 	int i;
 	int j;
-	int state = 0;
+	int step = 0;
 	char filename[255];
-	sprintf(filename, fileParamBuff, state);
+	sprintf(filename, fileParamBuff, step);
 	nbodyDirectPrintParticles(filename, particles, count);
-	for (state = 1; state <= n; state++) {
+	/* For each step */
+	for (step = 1; step <= n; step++) {
 		for (i = 0; i < count; i++) {
 			ax = 0.0;
 			ay = 0.0;
@@ -76,9 +78,9 @@ void nbodyDirect(
 			particles[i].y = ynew[i];
 			particles[i].z = znew[i];
 		}
-		/* print the state */
+		/* print the step */
 		
-		sprintf(filename, fileParamBuff, state);
+		sprintf(filename, fileParamBuff, step);
 		nbodyDirectPrintParticles(filename, particles, count);
 	}
 }

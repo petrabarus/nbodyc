@@ -3,6 +3,7 @@
  * Author: petra
  *
  * Created on 01 Februari 2011, 14:24
+ * Driver for direct force-calculation algorithm
  */
 
 #ifndef DIRECT_H
