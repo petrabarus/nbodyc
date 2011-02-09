@@ -25,11 +25,11 @@ char fileParamBuff[255];
 bodyptr convertStruct(particle * particles, int count);
 
 void nbodyBarnesHut(particle * particles,
-		int count,
-		int n,
-		double timeDiff,
-		double eps,
-		char * outputPath)
+	int count,
+	int n,
+	double timeDiff,
+	double eps,
+	char * outputPath)
 {
 	int step;
 	sprintf(fileParamBuff, "%s_%%0%dd.vtk", outputPath, ((int) log10(n) + 1));
@@ -44,11 +44,12 @@ void nbodyBarnesHut(particle * particles,
 		//summarize body
 		//compute force
 		//Advance each body
-		for (p = bodies; p < bodies + count; p++){
+		for (p = bodies; p < bodies + count; p++) {
 			/* Advance the speed */
 			/* Advance the position */
 		}
 		/* Free the tree */
+		treeFree(&root);
 	}
 }
 
@@ -65,6 +66,7 @@ bodyptr convertStruct(particle* particles, int count)
 		Vel(body)[0] = p->vx;
 		Vel(body)[1] = p->vy;
 		Vel(body)[2] = p->vz;
+		Type((nodeptr) body) = BODY;
 		body++;
 	}
 	return bodies;

@@ -12,7 +12,9 @@
 extern "C" {
 #endif
 
-    void die(char * fmt, ...);
+        void die(char * fmt, ...);
+
+        void eprintf(char * fmt, ...);
 
 #ifdef	__cplusplus
 }

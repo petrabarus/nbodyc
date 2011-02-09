@@ -13,30 +13,67 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
-    /* Dimension 3 */
+        /* Dimension 3 */
 #define NDIM 3
-    typedef float real;
-    typedef float *realptr;
-    typedef real vector[NDIM];
-    typedef real matrix[NDIM][NDIM];
+        typedef float real;
+        typedef float *realptr;
+        typedef real vector[NDIM];
+        typedef real matrix[NDIM][NDIM];
+        /* Vector Operations */
+        /* Clear vector */
+#define CLRV(v)				                   		\
+{									\
+    int _i;								\
+    for (_i = 0; _i < NDIM; _i++)					\
+        (v)[_i] = 0.0;							\
+}
 
-    /* Node definition */
+        /* Set Vector */
+#define SETV(v,u)				                 	\
+{ 									\
+    int _i; 								\
+    for (_i = 0; _i < NDIM; _i++) 					\
+        (v)[_i] = (u)[_i]; 						\
+}
+        /* MUL Vect by Scalar, ADD to vect */
+#define ADDMULVS(v,u,s)                                                 \
+{                                                                       \
+    (v)[0] += (u)[0] * (s);                                             \
+    (v)[1] += (u)[1] * (s);                                             \
+    (v)[2] += (u)[2] * (s);                                             \
+}
+        /* MULtiply Vector by Scalar */
+#define MULVS(v,u,s)		                        		\
+{									\
+    (v)[0] = (u)[0] * (s);						\
+    (v)[1] = (u)[1] * (s);						\
+    (v)[2] = (u)[2] * (s);						\
+}
 
+        /* DIVide Vector by Scalar */
+#define DIVVS(v,u,s)		                         		\
+{									\
+    (v)[0] = (u)[0] / (s);						\
+    (v)[1] = (u)[1] / (s);						\
+    (v)[2] = (u)[2] / (s);						\
+}
 
-    typedef struct _node {
-        /* Node type */
-        short type;
-        /* Force calculation status */
-        unsigned int update;
-        /* Link to next force calculation */
-        struct _node * next;
-        /* Mass */
-        real mass;
-        /* Position */
-        vector pos;
-    } node;
+        /* Node definition */
 
-    typedef node * nodeptr;
+        typedef struct _node {
+                /* Node type */
+                short type;
+                /* Force calculation status */
+                unsigned int update;
+                /* Link to next force calculation */
+                struct _node * next;
+                /* Mass */
+                real mass;
+                /* Position */
+                vector pos;
+        } node;
+
+        typedef node * nodeptr;
 
 #define BODY 1                 /* type code for bodies */
 #define CELL 2                 /* type code for cells */
@@ -47,49 +84,49 @@ extern "C" {
 #define Mass(x)   (((nodeptr) (x))->mass)
 #define Pos(x)    (((nodeptr) (x))->pos)
 
-    /* Body definition */
+        /* Body definition */
 
 
-    typedef struct _body {
-        /* Data common to all nodes */
-        node bodynode;
-        /* Velocity */
-        vector v;
-        /* Acceleration */
-        vector a;
-        /* Potential at body */
-        real phi;
-    } body;
+        typedef struct _body {
+                /* Data common to all nodes */
+                node bodynode;
+                /* Velocity */
+                vector v;
+                /* Acceleration */
+                vector a;
+                /* Potential at body */
+                real phi;
+        } body;
 
-    typedef body * bodyptr;
+        typedef body * bodyptr;
 
 #define Vel(x)    (((bodyptr) (x))->v)
 #define Acc(x)    (((bodyptr) (x))->a)
 #define Phi(x)    (((bodyptr) (x))->phi)
 
-    /* Cell definition */
+        /* Cell definition */
 #define NSUB (1 << NDIM)
 
-    typedef struct _cell {
-        /* Data common to all nodes */
-        node cellnode;
+        typedef struct _cell {
+                /* Data common to all nodes */
+                node cellnode;
 
-        union {
-            /* Link to first descendent */
-            nodeptr more;
-            /* Dist from last force sum */
-            real dlast;
-        } mord;
+                union {
+                        /* Link to first descendent */
+                        nodeptr more;
+                        /* Dist from last force sum */
+                        real dlast;
+                } mord;
 
-        union {
-            /* Descendents of cell */
-            nodeptr child[NSUB];
-            /* Quad. moment of cell */
-            matrix quad;
-        } sorq;
-    } cell;
+                union {
+                        /* Descendents of cell */
+                        nodeptr child[NSUB];
+                        /* Quad. moment of cell */
+                        matrix quad;
+                } sorq;
+        } cell;
 
-    typedef cell * cellptr;
+        typedef cell * cellptr;
 
 #define More(x)   (((cellptr) (x))->mord.more)
 #define Dlast(x)  (((cellptr) (x))->mord.dlast)
@@ -97,34 +134,52 @@ extern "C" {
 #define Quad(x)   (((cellptr) (x))->sorq.quad)
 
 
-    /* */
+        /* */
 
-    /**
-     * Initialize tree structure for hierarchical force calculation
-     * @param root Root of the tree to be initiated
-     * @param bodies Array of bodies to be calculate
-     * @param nbody The number of bodies
-     */
-    void treeInit(cellptr * root, bodyptr bodies, int nbody);
+        /**
+         * Initialize tree structure for hierarchical force calculation
+         * @param root Root of the tree to be initiated
+         * @param bodies Array of bodies to be calculate
+         * @param nbody The number of bodies
+         */
+        void treeInit(cellptr * root, bodyptr bodies, int nbody);
 
-    /**
-     * Free an existing tree claiming back the memory used.
-     * @param root Tree to be freed
-     */
-    void treeFree(cellptr * root);
+        /**
+         * Free an existing tree claiming back the memory used.
+         * @param root Tree to be freed
+         */
+        void treeFree(cellptr * root);
 
-    /**
-     * Insert body into tree
-     * @param root Root of the tree to be initiated
-     * @param body The body to be inserted
-     */
-    void treeInsert(cellptr * root, real rsize, bodyptr body);
+        /**
+         * Insert body into tree
+         * @param root Root of the tree to be initiated
+         * @param body The body to be inserted
+         */
+        void treeInsert(cellptr * root, real rsize, bodyptr body);
 
-    /**
-     * Create a new fre cell
-     * @return Pointer to free cell
-     */
-    cellptr treeCreateCell();
+        /**
+         * Create a new fre cell
+         * @return Pointer to free cell
+         */
+        cellptr treeCreateCell();
+
+        /**
+         * 
+         * @param root
+         */
+        void printTree(cellptr root);
+
+        /**
+         * 
+         * @param body
+         */
+        void printBody(bodyptr body);
+
+        /**
+         *
+         * @param cell
+         */
+        void printCell(cellptr cell);
 #ifdef	__cplusplus
 }
 #endif
