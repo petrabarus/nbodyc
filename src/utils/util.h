@@ -11,7 +11,9 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
-
+#define ABS(x)   (((x)<0)?-(x):(x))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+#define MIN(a,b) (((a)<(b))?(a):(b))
         void die(char * fmt, ...);
 
         void eprintf(char * fmt, ...);

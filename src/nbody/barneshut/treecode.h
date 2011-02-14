@@ -57,6 +57,13 @@ extern "C" {
     (v)[1] = (u)[1] / (s);						\
     (v)[2] = (u)[2] / (s);						\
 }
+#define SETM(p,q)		/* SET Matrix */			\
+{									\
+    int _i, _j;								\
+    for (_i = 0; _i < NDIM; _i++)					\
+        for (_j = 0; _j < NDIM; _j++)					\
+	    (p)[_i][_j] = (q)[_i][_j];					\
+}
 
         /* Node definition */
 
@@ -105,7 +112,7 @@ extern "C" {
 #define Phi(x)    (((bodyptr) (x))->phi)
 
         /* Cell definition */
-#define NSUB (1 << NDIM)
+#define NCHILD (1 << NDIM)
 
         typedef struct _cell {
                 /* Data common to all nodes */
@@ -120,7 +127,7 @@ extern "C" {
 
                 union {
                         /* Descendents of cell */
-                        nodeptr child[NSUB];
+                        nodeptr child[NCHILD];
                         /* Quad. moment of cell */
                         matrix quad;
                 } sorq;
@@ -141,8 +148,9 @@ extern "C" {
          * @param root Root of the tree to be initiated
          * @param bodies Array of bodies to be calculate
          * @param nbody The number of bodies
+         * @param rootSize The size of the root produced
          */
-        void treeInit(cellptr * root, bodyptr bodies, int nbody);
+        void treeInit(cellptr * root, bodyptr bodies, int nbody, real * rootSize);
 
         /**
          * Free an existing tree claiming back the memory used.
@@ -164,6 +172,13 @@ extern "C" {
         cellptr treeCreateCell();
 
         /**
+         * Find tree depth
+         * @param root
+         * @return
+         */
+        int treeDepth(cellptr root);
+
+        /**
          * 
          * @param root
          */
@@ -180,6 +195,70 @@ extern "C" {
          * @param cell
          */
         void printCell(cellptr cell);
+
+
+        void calculateForce(cellptr root, double eps, real rootSize);
+
+
+        /**
+         * Find the box size of the tree
+         * @param root Root of the tree
+         * @param rsize Initial box size
+         * @param bodies The bodies
+         * @param nbody Number of bodies
+         * @return Box size of the tree
+         */
+        real expandBox(cellptr root, real rsize, bodyptr bodies, int nbody);
+
+        /**
+         * Compute subcell index for a body in specified cell
+         * @param p The body
+         * @param q The cell
+         * @return Index body p in cell q
+         */
+        int findIndex(bodyptr p, cellptr q);
+
+        /**
+         * Recursively calculating center of mass for a cell
+         * @param cell Cell to be calculated
+         */
+        void calculateCenterOfMass(cellptr cell);
+
+        void printTreeRec(cellptr node, int level);
+
+        int treeDepthRec(cellptr node);
+
+        /**
+         * Walk a tree to calculate force iteratively
+         * @param aPtr Active list first element
+         * @param nPtr Active list second element
+         * @param cPtr Interaction list first element
+         * @param bPtr Interaction list last element
+         * @param p Tree root
+         * @param pSize Tree size
+         * @param pMid Tree middle point
+         * @param eps Epsilon
+         */
+        void walkTree(nodeptr * aPtr, nodeptr *nPtr,
+                cellptr cPtr, cellptr bPtr,
+                nodeptr p, real pSize, vector pMid, double eps);
+
+        /**
+         *
+         * @param node
+         * @param pSize
+         * @param pMid
+         * @return
+         */
+        bool acceptNode(nodeptr node, real pSize, vector pMid);
+
+        /**
+         * Do a recursive tree walk to install Next and More link
+         * @param start Starting node
+         * @param stop Stopping node
+         */
+        void makeThread(nodeptr start, nodeptr end);
+
 #ifdef	__cplusplus
 }
 #endif
